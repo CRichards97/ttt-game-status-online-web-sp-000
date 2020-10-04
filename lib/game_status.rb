@@ -14,6 +14,7 @@ WIN_COMBINATIONS = [
   [6,4,2]
 ]
 
+# Define won?, full?, draw?, over?, and winner below
 def won?(board)
   WIN_COMBINATIONS.detect do |combo|
     board[combo[0]] == board[combo[1]] &&
@@ -21,11 +22,22 @@ def won?(board)
     position_taken?(board, combo[0])
   end
 end
+
 def full?(board)
   board.all?{|token| token == "X" || token == "O"}
 end
-if board[top_row_win[0]] == "X" && board[top_row_win[1]] == "X" && board[top_row_win[2]] == "X"
-  "X won in the top row"
+
+def draw?(board)
+  full?(board) && !won?(board)
 end
+
+def over?(board)
+  won?(board) || full?(board)
+end
+
+def winner(board)
+  if winning_combo = won?(board)
+    board[winning_combo.first]
+  end
 end
 # Define your WIN_COMBINATIONS constant
