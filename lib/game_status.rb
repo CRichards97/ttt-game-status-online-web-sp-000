@@ -24,5 +24,8 @@ end
 def full?(board)
   board.all?{|token| token == "X" || token == "O"}
 end
+if board[top_row_win[0]] == "X" && board[top_row_win[1]] == "X" && board[top_row_win[2]] == "X"
+  "X won in the top row"
+end
 
 # Define your WIN_COMBINATIONS constant
